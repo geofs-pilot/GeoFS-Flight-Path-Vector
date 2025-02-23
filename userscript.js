@@ -66,8 +66,10 @@ function main() {
                 if (!geofs.aircraft.instance.groundContact && !(window.deltaLoc[0]+window.deltaLoc[1]+window.deltaLoc[2] == 0)) {
                     window.y.position = cF(window.currLoc.x+(window.howFar*window.deltaLoc[0]), (window.currLoc.y+(window.howFar*window.deltaLoc[1])), (window.currLoc.z+(window.howFar*window.deltaLoc[2])));
                 }
-
+                
                 // Display css
+                var uiBottom = document.querySelector('.geofs-ui-bottom');
+                if (!uiBottom) return; // If the UI element isn't found, exit
                 var flightDataElement = document.getElementById('flightDataDisplay0');
                 if (!flightDataElement) {
                     flightDataElement = document.createElement('div');
@@ -95,6 +97,7 @@ function main() {
                 flightDataElement.innerHTML = `
                 <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">Glideslope ${glideslope}</span>
             `;
+                uiBottom.appendChild(flightDataElement);
             }
         }
 
